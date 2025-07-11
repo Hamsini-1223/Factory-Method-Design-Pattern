@@ -38,8 +38,8 @@ The Factory Method pattern provides an interface for creating objects without sp
 1. Clone the repository
 
    ```bash
-   git clone <repository-url>
-   cd factory-method-logistics
+   git clone https://github.com/Hamsini-1223/Factory-Method-Design-Pattern
+   cd Factory
    ```
 
 2. Install dependencies
