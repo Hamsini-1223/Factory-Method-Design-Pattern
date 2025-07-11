@@ -1,0 +1,27 @@
+{
+  "name": "factory-method-logistics",
+  "version": "1.0.0",
+  "description": "Simple Factory Method Pattern example using logistics company",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "dev": "ts-node main.ts"
+  },
+  "keywords": [
+    "typescript",
+    "design-patterns",
+    "factory-method",
+    "logistics"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
