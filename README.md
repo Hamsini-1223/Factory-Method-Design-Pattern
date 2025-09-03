@@ -32,6 +32,10 @@ package.json                 # Project configuration
 tsconfig.json               # TypeScript configuration
 ```
 
+## UML Class Diagram
+
+![Government Singleton UML Diagram](Factory_Pattern.png)
+
 ## Installation
 
 1. Clone or download the project files
