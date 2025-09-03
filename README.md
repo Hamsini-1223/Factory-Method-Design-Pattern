@@ -1,14 +1,10 @@
-# Factory Method Pattern - Logistics System
+# Simple Factory Method Pattern - Logistics System
 
-A TypeScript implementation of the Factory Method design pattern using an interactive console interface with a logistics company example.
+A clean and simple TypeScript implementation of the Factory Method design pattern using a logistics delivery system.
 
 ## Overview
 
 The Factory Method pattern provides an interface for creating objects without specifying their exact class. This implementation demonstrates the pattern through a logistics management system that supports different transportation methods.
-
-## UML Class Diagram
-
-![Factory Method Pattern UML Diagram](Factory_Pattern.png)
 
 ## Pattern Structure
 
@@ -21,26 +17,24 @@ The Factory Method pattern provides an interface for creating objects without sp
 ## Project Structure
 
 ```
-├── Transport.ts          # Transport interface
-├── Truck.ts             # Road transport implementation
-├── Ship.ts              # Sea transport implementation
-├── Logistics.ts         # Abstract logistics base class
-├── RoadLogistics.ts     # Road logistics factory
-├── SeaLogistics.ts      # Sea logistics factory
-├── main.ts              # Interactive console application
-├── package.json         # Project configuration
-├── tsconfig.json        # TypeScript configuration
-└── README.md           # Documentation
+src/
+├── models/
+│   ├── transport.ts          # Transport interface
+│   ├── truck.ts             # Road transport implementation
+│   └── ship.ts              # Sea transport implementation
+├── factories/
+│   ├── logistics.ts         # Abstract logistics base class
+│   ├── roadLogistics.ts     # Road logistics factory
+│   └── seaLogistics.ts      # Sea logistics factory
+├── logisticsApp.ts          # Interactive console application
+└── main.ts                  # Entry point
+package.json                 # Project configuration
+tsconfig.json               # TypeScript configuration
 ```
 
 ## Installation
 
-1. Clone the repository
-
-   ```bash
-   git clone https://github.com/Hamsini-1223/Factory-Method-Design-Pattern
-   cd Factory
-   ```
+1. Clone or download the project files
 
 2. Install dependencies
    ```bash
@@ -64,7 +58,7 @@ npm start
 
 ## How It Works
 
-1. The application presents a menu for delivery planning
+1. The application presents a simple menu for delivery planning
 2. User selects what to deliver and transportation method
 3. The appropriate logistics company creates the correct transport vehicle
 4. The vehicle executes the delivery using its specific method
@@ -84,83 +78,84 @@ const result = company.planDelivery("Pizza");
 // 3. Truck.deliver() executes and returns delivery message
 ```
 
-## Output
-
-When you run the application, you'll see an interactive console interface:
+## Sample Output
 
 ```
-🏭 Welcome to Factory Method Logistics!
-========================================
-🚛 We deliver by road and sea 🚢
+🏭 Factory Method Logistics
+🚛 Road and Sea Delivery 🚢
 
-📋 What would you like to do?
-1. Plan a delivery
-2. See our transport options
-3. Exit
+What would you like to do?
+1. Plan delivery
+2. Exit
 
-Choose an option (1-3): 1
+Choose (1-2): 1
 
-📦 Plan Your Delivery
---------------------
-What do you want to deliver? Pizza
+📦 What do you want to deliver?
+Item: Pizza
 
-🚚 How should we deliver your Pizza?
-1. 🚛 By road (fast for nearby locations)
-2. 🚢 By sea (cost-effective for far locations)
-3. 🔙 Back to main menu
+How to deliver Pizza?
+1. 🚛 Road
+2. 🚢 Sea
+3. Back
 
-Choose transport method (1-3): 1
+Choose (1-3): 1
 
-⚡ Processing your delivery...
-------------------------------
+Processing...
 ✅ 🚛 Truck delivers Pizza by road
-💡 Note: We used road logistics company
-   The factory method created the right vehicle automatically!
+Factory method created the right vehicle!
 
-🔄 Plan another delivery? (y/n): n
+Another delivery? (y/n): n
 
-📋 What would you like to do?
-1. Plan a delivery
-2. See our transport options
-3. Exit
+What would you like to do?
+1. Plan delivery
+2. Exit
 
-Choose an option (1-3): 3
+Choose (1-2): 2
 
-🎉 Thank you for using Factory Method Logistics!
-📚 You've seen the Factory Method pattern in action:
-   • Same delivery planning process
-   • Different vehicles created automatically
-   • Easy to add new transport types
-
-Goodbye! 👋
+Thanks for using Factory Method Logistics! 👋
 ```
+
+## Key Features
+
+- **Simple Design**: Clean, easy-to-understand implementation
+- **Error Handling**: Basic validation and error management
+- **Extensible**: Easy to add new transport types
+- **Type Safe**: Full TypeScript support with strict typing
+- **Interactive**: Console-based user interface
 
 ## Key Benefits
 
-- **Extensibility**: Easy to add new transport types
 - **Loose Coupling**: Client code doesn't depend on concrete classes
+- **Extensibility**: Easy to add new transport types without changing existing code
 - **Single Responsibility**: Each class has a focused purpose
-- **Open/Closed Principle**: Open for extension, closed for modification
+- **Maintainable**: Clean separation of concerns
 
 ## Extending the System
 
 To add a new transport type (e.g., Air transport):
 
-1. Create `Plane.ts` implementing `Transport` interface
-2. Create `AirLogistics.ts` extending `Logistics` class
-3. Update `main.ts` to include the new option
-
-Example:
+1. Create `plane.ts` in the `models` folder:
 
 ```typescript
-// Plane.ts
+import { Transport } from "./transport";
+
 export class Plane implements Transport {
   deliver(item: string): string {
-    return `Plane delivers ${item} by air`;
+    if (!item || item.trim().length === 0) {
+      throw new Error("Invalid item for delivery");
+    }
+    return `✈️ Plane delivers ${item.trim()} by air`;
   }
 }
+```
 
-// AirLogistics.ts
+2. Create `airLogistics.ts` in the `factories` folder:
+
+```typescript
+import { Logistics } from "./logistics";
+import { Transport } from "../models/transport";
+import { Plane } from "../models/plane";
+
 export class AirLogistics extends Logistics {
   createTransport(): Transport {
     return new Plane();
@@ -168,10 +163,25 @@ export class AirLogistics extends Logistics {
 }
 ```
 
+3. Update `logisticsApp.ts` to include the new option in the menu and choice handling.
+
 ## Dependencies
 
 - Node.js (≥14.0.0)
 - TypeScript (≥5.0.0)
+- ts-node (for development)
+
+## Development Dependencies
+
+- `@types/node` - Node.js type definitions
+- `typescript` - TypeScript compiler
+- `ts-node` - TypeScript execution for Node.js
+
+## Scripts
+
+- `npm run dev` - Run in development mode with ts-node
+- `npm run build` - Compile TypeScript to JavaScript
+- `npm start` - Run the compiled JavaScript
 
 ## Built By
 
