@@ -30,8 +30,8 @@ src/
 │   └── seaLogistics.ts      # Sea logistics factory
 ├── logisticsApp.ts          # Interactive console application
 └── main.ts                  # Entry point
-package.json                 # Project configuration
-tsconfig.json               # TypeScript configuration
+├──package.json                 # Project configuration
+├──tsconfig.json               # TypeScript configuration
 ```
 
 ## UML Class Diagram
