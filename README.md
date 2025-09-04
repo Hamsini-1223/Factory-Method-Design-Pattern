@@ -17,6 +17,8 @@ The Factory Method pattern provides an interface for creating objects without sp
 ## Project Structure
 
 ```
+├──asset/
+│   ├── Factory_Pattern.png
 src/
 ├── models/
 │   ├── transport.ts          # Transport interface
@@ -34,7 +36,7 @@ tsconfig.json               # TypeScript configuration
 
 ## UML Class Diagram
 
-![Government Singleton UML Diagram](Factory_Pattern.png)
+![Government Singleton UML Diagram](asset/Factory_Pattern.png)
 
 ## Installation
 
